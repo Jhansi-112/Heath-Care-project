@@ -29,5 +29,22 @@ pipeline {
         sh 'docker build -t jhansi977/health-care:1.0 .'
                           }
             }
-} 
+     stage('Login to Dockerhub') {
+      steps {
+         echo 'This stage will log into Dockerhub'
+         withCredentials([usernamePassword(credentialsId: 'Dockerlogin', passwordVariable: 'dockerpass', usernameVariable: 'dockeruser')]) {
+         sh 'docker login -u ${dockeruser} -p ${dockerpass}'
+              }
+         }
+   }
+      stage('Docker Push-Image') {
+      steps {
+        echo 'This stage will push my new image to the dockerhub'
+        sh 'docker push jhansi977/health-care:1.0'
+            }
+       }
+  }
+}
+
+                                                  
   
