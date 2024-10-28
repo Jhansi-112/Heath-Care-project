@@ -111,9 +111,9 @@ pipeline {
         sh 'kubectl apply -f app-deploy.yml'
         sh 'kubectl get svc'
       }
-    }
-  }
-}
+    
+  
+
  
      
     
